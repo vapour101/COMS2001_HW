@@ -14,6 +14,9 @@
 *.la
 *.lo
 
+# Temporary emacs files
+*~
+
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so
