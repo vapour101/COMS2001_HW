@@ -35,6 +35,8 @@
 .dSYM
 .DS_Store
 *.swp
+.directory
+*.kate-swp
 
 #HW0
 hw0/main
