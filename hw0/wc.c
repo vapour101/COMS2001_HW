@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 void wc(FILE* ofile, FILE* infile, char* inname)
 {
