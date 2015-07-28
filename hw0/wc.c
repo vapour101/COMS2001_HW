@@ -33,7 +33,7 @@ void wc(FILE* ofile, FILE* infile, char* inname)
             break;
     }
     
-    fprintf(ofile, "%i\t%i\t%i\t%s\n", lineCount, wordCount, byteCount, inname);
+    fprintf(ofile, " %i %i %i %s\n", lineCount, wordCount, byteCount, inname);
 }
 
 int main (int argc, char* argv[])
