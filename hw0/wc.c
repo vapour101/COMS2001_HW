@@ -1,9 +1,16 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
-void wc(FILE *ofile, FILE *infile, char *inname) {
+void wc ( FILE *infile, char *inname);
+
+int
+main (int argc, char *argv[]) {
+    
 }
 
-int main (int argc, char *argv[]) {
-    return 0;
+void
+wc( FILE *infile, char *inname) {
+    
 }
