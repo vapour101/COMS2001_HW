@@ -2,7 +2,12 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-void wc(FILE* ofile, FILE* infile, char* inname)
+void printLine(int lines, int words, int bytes, char* file)
+{
+    printf("%i\t%i\t%i\t%s\n", lines, words, bytes, file);
+}
+
+void wc(FILE* infile, char* inname, int* tLines, int* tWords, int* tBytes)
 {
     if (infile == NULL)
     {
@@ -33,17 +38,26 @@ void wc(FILE* ofile, FILE* infile, char* inname)
             break;
     }
     
-    fprintf(ofile, " %i %i %i %s\n", lineCount, wordCount, byteCount, inname);
+    *tLines += lineCount;
+    *tWords += wordCount;
+    *tBytes += byteCount;
+    
+    printLine(lineCount, wordCount, byteCount, inname);
 }
 
 int main (int argc, char* argv[])
 {
     FILE* file;
-    file = fopen(argv[1], "r");
+    int lines = 0, words = 0, bytes = 0;
     
-    wc(stdout, file, argv[1]);
+    for (int i = 1; i < argc; i++)
+    {
+        file = fopen(argv[i], "r");
+        wc(file, argv[i], &lines, &words, &bytes);
+        fclose(file);
+    }
     
-    fclose(file);
+    printLine(lines, words, bytes, "total");
     
     return 0;
 }
