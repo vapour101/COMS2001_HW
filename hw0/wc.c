@@ -1,6 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+void printLine(int, int, int, char*);
+void wc(FILE*, char*, int*, int*, int*);
+
+int main (int argc, char* argv[])
+{
+    FILE* file;
+    int lines = 0, words = 0, bytes = 0;
+    
+    for (int i = 1; i < argc; i++)
+    {
+        file = fopen(argv[i], "r");
+        wc(file, argv[i], &lines, &words, &bytes);
+        fclose(file);
+    }
+    
+    printLine(lines, words, bytes, "total");
+    
+    return 0;
+}
 
 void printLine(int lines, int words, int bytes, char* file)
 {
@@ -43,21 +65,4 @@ void wc(FILE* infile, char* inname, int* tLines, int* tWords, int* tBytes)
     *tBytes += byteCount;
     
     printLine(lineCount, wordCount, byteCount, inname);
-}
-
-int main (int argc, char* argv[])
-{
-    FILE* file;
-    int lines = 0, words = 0, bytes = 0;
-    
-    for (int i = 1; i < argc; i++)
-    {
-        file = fopen(argv[i], "r");
-        wc(file, argv[i], &lines, &words, &bytes);
-        fclose(file);
-    }
-    
-    printLine(lines, words, bytes, "total");
-    
-    return 0;
 }
