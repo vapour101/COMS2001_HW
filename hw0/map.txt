@@ -1,0 +1,34 @@
+40058b          -   main in .text
+400546          -   recur in .text
+7ffd6e9a3fcc    -   not in objdump
+600ae8          -   stuff in .data
+a20010          -   not in objdump
+a20080          -   not in objdump
+7ffd6e9a3f9c    -   not in objdump
+7ffd6e9a3f6c    -   not in objdump
+7ffd6e9a3f3c    -   not in objdump
+7ffd6e9a3f0c    -   not in objdump
+
+Important segments:
+    .text:  contains code
+    .data:  contains pre-allocated static variables
+    .bss:   contains unallocated static variables
+    
+The stack is growing up (towards 000...)
+
+The stack frame for each recursive call is 0x30.
+
+The heap is at 0xA20010 (above the stack), growing down (towards FFF...)
+
+No, there is a gap of 12 (0xC) between the two malloc-ed sections of memory.
+
+.text   <- 0x400450
+.data   <- 0x600AD8
+.bss    <- 0x600AEC
+heap    <- 0xA20010
+    |   |   |
+    V   V   V
+    
+    ^   ^   ^
+    |   |   |
+stack   <- 0x7FFD6E9A3FCC
