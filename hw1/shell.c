@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdbool.h>
+#include <signal.h>
 
 #define INPUT_STRING_SIZE 80
 
