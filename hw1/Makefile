@@ -4,16 +4,11 @@
 
 # files
 EXECUTABLE  = shell
-SOURCES  = main.c shell.c process.c io.c parse.c 
-OBJECTS  = $(SOURCES:.c=.o)
+OBJECTS  = main.o shell.o process.o io.o parse.o 
 
-# compilation and linking
-CC      = gcc
-CFLAGS  = -std=c99 -ggdb3 -c
-LDFLAGS = 
-WARN    = -Wall -Wextra -pedantic
-COMPILE.c = $(CC) $(CFLAGS) $(CPPFLAGS) $(WARN)
-LINK.c    = $(CC)
+# flags
+WARN	= -Wall -Wextra -pedantic
+CFLAGS  = -ggdb3 $(WARN)
 
 #################
 #     targets   #
@@ -22,14 +17,10 @@ LINK.c    = $(CC)
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(LINK.c) $^ $(LDFLAGS) -o $@
 
-$(OBJECTS): %.o: %.c
-	$(COMPILE.c) $< -o $@
+# remove object files and executable
+clean:
+	rm -f *.o $(EXECUTABLE)
 
 # phony targets
 .PHONY: clean
-
-# remove object files, emacs temporaries
-clean:
-	rm -f *.o *~
