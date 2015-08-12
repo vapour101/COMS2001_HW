@@ -45,9 +45,8 @@ fun_desc_t cmd_table[] =
 
 int cmd_cd(tok_t arg[])
 {
-    
-    
-    return 1;
+    printf("\nDEBUG - %s\n", arg[0]);
+    return chdir(arg[0]);
 }
 
 int cmd_help(tok_t arg[])
