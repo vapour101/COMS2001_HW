@@ -20,6 +20,8 @@
 int cmd_quit(tok_t arg[])
 {
     printf("Bye\n");
+    free(arg[-1]);
+    free(arg-1);
     exit(0);
     return 1;
 }
@@ -45,8 +47,11 @@ fun_desc_t cmd_table[] =
 
 int cmd_cd(tok_t arg[])
 {
-    printf("\nDEBUG - %s\n", arg[0]);
-    return chdir(arg[0]);
+    char* path = canonicalize_file_name(arg[0]);
+    int ret = chdir(path);
+    free(path);
+    return ret;
+    //return chdir(arg[0]);
 }
 
 int cmd_help(tok_t arg[])
@@ -139,6 +144,8 @@ int shell (int argc, char* argv[])
     
     lineNum=0;
     fprintf(stdout, "%s: ", wd);
+    free(wd);
+    free(s);
     
     while ((s = freadln(stdin)))
     {
@@ -150,9 +157,13 @@ int shell (int argc, char* argv[])
         {
             fprintf(stdout, "This shell only supports built-ins. Replace this to run programs as commands.\n");
         }
+        free(s);
+        free(t);
+        
         wd = get_current_dir_name();
         fprintf(stdout, "%s: ", wd);
+        free(wd);
     }
-    free(wd);
+    
     return 0;
 }
